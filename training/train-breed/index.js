@@ -16,13 +16,11 @@ module.exports = df.orchestrator(function* (context) {
   context.log(`Log from train breed for ${breed}`);
 
   const images = yield context.df.callActivity("get-images", breed);
-  if (images && !images.length) {
-    const tag = yield context.df.callActivity("create-tag", breed);
-    const response = yield context.df.callActivity("upload-images", {
-      tagId: tag.id,
-      urls: images,
-    });
-  }
+  const tag = yield context.df.callActivity("create-tag", breed);
+  const response = yield context.df.callActivity("upload-images", {
+    tagId: tag.id,
+    urls: images,
+  });
 
-  return "OK";
+  return response;
 });

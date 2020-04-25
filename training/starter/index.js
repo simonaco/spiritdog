@@ -10,6 +10,8 @@
 
 const df = require("durable-functions");
 const appInsights = require("applicationinsights");
+appInsights.setup();
+const client = appInsights.defaultClient;
 
 module.exports = async function (context, req) {
   const client = df.getClient(context);
@@ -19,7 +21,6 @@ module.exports = async function (context, req) {
     req.body
   );
 
-  appInsights.setup(process.env.INSTRUMENTATION_KEY).start();
   context.log(`Started orchestration with ID = '${instanceId}'.`);
 
   return client.createCheckStatusResponse(context.bindingData.req, instanceId);
