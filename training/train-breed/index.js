@@ -15,11 +15,13 @@ module.exports = df.orchestrator(function* (context) {
   const breed = context.df.getInput();
 
   const images = yield context.df.callActivity("get-images", breed);
-  const tag = yield context.df.callActivity("create-tag", breed);
-  const response = yield context.df.callActivity("upload-images", {
-    tagId: tag.id,
-    urls: images,
-  });
+  if (images && !images.length) {
+    const tag = yield context.df.callActivity("create-tag", breed);
+    const response = yield context.df.callActivity("upload-images", {
+      tagId: tag.id,
+      urls: images,
+    });
+  }
 
-  return response;
+  return "OK";
 });
