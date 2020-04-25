@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@azure/storage-blob": "^12.1.1",
+    "applicationinsights": "^1.7.4",
     "axios": "^0.19.2",
     "durable-functions": "^1.4.1",
     "lodash": "^4.17.15"
