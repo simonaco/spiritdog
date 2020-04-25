@@ -13,6 +13,7 @@ const df = require("durable-functions");
 
 module.exports = df.orchestrator(function* (context) {
   const breed = context.df.getInput();
+  context.log(`Log from train breed for ${breed}`);
 
   const images = yield context.df.callActivity("get-images", breed);
   if (images && !images.length) {

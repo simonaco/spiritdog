@@ -31,6 +31,7 @@ const getFiles = async (context) => {
 };
 
 module.exports = async function (context) {
+  context.log(`Log from get-images for ${context.bindings.input}`);
   const files = getFiles(context);
   return files;
 };

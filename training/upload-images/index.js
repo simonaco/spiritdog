@@ -17,6 +17,11 @@ const createImages = async ({ tagId, urls }) => {
 };
 
 module.exports = async function (context, input) {
+  context.log(
+    `Log from image upload: URLS - ${JSON.stringify(input.urls)} and TagID = ${
+      input.tagId
+    }`
+  );
   try {
     const response = await createImages({
       tagId: input.tagId,
