@@ -1,5 +1,6 @@
 <h1 align="center">Welcome to Spirit Dog 👋</h1>
-![Spirit Dog](assets/parks&rec.png)
+
+<img alt="License: MIT" src="https://raw.githubusercontent.com/simonaco/spiritdog/master/assets/parks%26rec.png?token=AAMAIEAUJ2S2KBPBU2AUXOK6VV6HQ" />
 <p>
   <a href="#" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
