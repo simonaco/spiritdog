@@ -12,7 +12,7 @@ async function createTag(context) {
       name: context.bindings.name,
     },
   });
-  context.log(response);
+  context.log(`Create a new tag, response: ${response.data}`);
   return response.data;
 }
 async function getTag(context) {
@@ -25,6 +25,7 @@ async function getTag(context) {
 
   if (!tag) {
     tag = await createTag(context);
+    return tag;
   }
   return tag;
 }

@@ -25,6 +25,7 @@ module.exports = async function (context, input) {
   try {
     //custom vision training limited to 64 images and 20 tags per batch.
     let response;
+    let batchNumber = 0;
     while (input.urls.length > 0) {
       let batch = input.urls.splice(0, 63);
       context.log(
@@ -36,8 +37,18 @@ module.exports = async function (context, input) {
         tagId: input.tagId,
         urls: batch,
       });
+      context.log(
+        `Image upload for batch ${batchNumber}; response - ${JSON.stringify(
+          response.data
+        )}`
+      );
+      batchNumber++;
     }
-    return response.data;
+    if (response && response.data) {
+      return response.data;
+    } else {
+      return "No images to upload";
+    }
   } catch (error) {
     context.log(
       `Error in upload image activity; Error code: ${error.code} message: ${error.message}`
