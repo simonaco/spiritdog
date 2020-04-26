@@ -23,11 +23,21 @@ module.exports = async function (context, input) {
     }`
   );
   try {
-    const response = await createImages({
-      tagId: input.tagId,
-      urls: input.urls,
-    });
-    return response;
+    //custom vision training limited to 64 images and 20 tags per batch.
+    let response;
+    while (input.urls.length > 0) {
+      let batch = input.urls.splice(0, 63);
+      context.log(
+        `Log from image upload: URLS - ${JSON.stringify(batch)} and TagID = ${
+          input.tagId
+        }`
+      );
+      response = await createImages({
+        tagId: input.tagId,
+        urls: batch,
+      });
+    }
+    return response.data;
   } catch (error) {
     context.log(
       `Error in upload image activity; Error code: ${error.code} message: ${error.message}`

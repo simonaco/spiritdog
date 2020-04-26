@@ -10,7 +10,7 @@
  */
 
 module.exports = async function (context) {
-  /* return [
+  return [
     "affenpinscher",
     "african",
     "airedale",
@@ -152,6 +152,5 @@ module.exports = async function (context) {
     "weimaraner",
     "whippet",
     "irish_wolfhound",
-  ];*/
-  return ["dingo", "dhole"];
+  ];
 };
